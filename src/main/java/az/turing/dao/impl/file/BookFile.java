@@ -27,17 +27,26 @@ public class BookFile extends BookingDao {
     }
 
     @Override
-    public Booking update(Booking booking) {
-        return null;
+    public void update(Booking booking) {
+        List<Booking> list=bookingFileUtil.readFromFile();
+        list.stream().filter(b->b.getId().equals(booking.getId()))
+                .findFirst()
+                .ifPresent(b->{
+                    b.setFlightId(booking.getFlightId());
+                    b.setPassengers(booking.getPassengers());
+                    bookingFileUtil.writeToFile(list);
+                });
     }
 
     @Override
     public void delete(Long id) {
-
+        List<Booking> list=bookingFileUtil.readFromFile();
+        list.removeIf(booking -> booking.getId().equals(id));
+        bookingFileUtil.writeToFile(list);
     }
 
     @Override
     public Booking getById(Long id) {
-        return null;
+        return bookingFileUtil.readFromFile().stream().filter(b->b.getId().equals(id)).findFirst().orElse(null);
     }
 }
