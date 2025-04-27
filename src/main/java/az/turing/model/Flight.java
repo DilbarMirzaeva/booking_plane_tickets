@@ -1,6 +1,8 @@
 package az.turing.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Flight {
     private Long id;
@@ -11,6 +13,13 @@ public class Flight {
 
     public Flight(Long id, String destination, LocalDateTime dateTime, int totalSeats, int availableSeats) {
         this.id = id;
+        this.destination = destination;
+        this.dateTime = LocalDateTime.parse(dateTime.toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.totalSeats = totalSeats;
+        this.availableSeats = availableSeats;
+    }
+
+    public Flight(String destination, LocalDateTime dateTime, int totalSeats, int availableSeats) {
         this.destination = destination;
         this.dateTime = dateTime;
         this.totalSeats = totalSeats;
