@@ -13,6 +13,11 @@ public class Booking {
         this.passengers = passengers;
     }
 
+    public Booking(Long flightId, List<Passenger> passengers) {
+        this.flightId = flightId;
+        this.passengers = passengers;
+    }
+
     public Long getId() {
         return id;
     }

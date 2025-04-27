@@ -1,6 +1,6 @@
 package az.turing.dao.impl.file;
 
-import az.turing.dao.BookingDao;
+import az.turing.dao.impl.inter.BookingDao;
 import az.turing.model.Booking;
 import az.turing.util.FileUtil;
 
@@ -48,5 +48,10 @@ public class BookFile extends BookingDao {
     @Override
     public Booking getById(Long id) {
         return bookingFileUtil.readFromFile().stream().filter(b->b.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public boolean existsByFlightId(Long id) {
+        return bookingFileUtil.readFromFile().stream().anyMatch(booking -> booking.getFlightId().equals(id));
     }
 }
