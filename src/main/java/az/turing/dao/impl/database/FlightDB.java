@@ -20,10 +20,10 @@ public class FlightDB extends FlightDao {
     }
 
     @Override
-    public boolean existsTimeAndDestination(String destionation, LocalDateTime time) {
+    public boolean existsTimeAndDestination(String destination, LocalDateTime time) {
         try(Connection connection= config.connection()){
             PreparedStatement ps=connection.prepareStatement(EXISTS_TIME_DESTINATION);
-            ps.setString(1,destionation);
+            ps.setString(1,destination);
             ps.setTimestamp(2, Timestamp.valueOf(time));
             ResultSet rs= ps.executeQuery();
             if (rs.next()){
