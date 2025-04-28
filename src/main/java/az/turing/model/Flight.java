@@ -26,6 +26,8 @@ public class Flight {
         this.availableSeats = availableSeats;
     }
 
+    public Flight(){}
+
     public Long getId() {
         return id;
     }
